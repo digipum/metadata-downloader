@@ -1,0 +1,10 @@
+{
+  "name": "com.mediacapture.exiftool",
+  "description": "Media Metadata Capture native host for exiftool tagging",
+  "path": "REPLACE_WITH_ABSOLUTE_PATH_TO_tag_with_exiftool.py",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://REPLACE_WITH_EXTENSION_ID/"
+  ]
+}
+

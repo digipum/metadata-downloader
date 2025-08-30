@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Media Metadata Capture",
+  "version": "0.1.0",
+  "description": "Scrape publisher and media credits from the current page; save and export for later attribution.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "tabs",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Capture Media Metadata",
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "options/options.html"
+}

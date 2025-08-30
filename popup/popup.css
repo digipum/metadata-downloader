@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0b0b0c;
+  --fg: #eaeaea;
+  --muted: #8a8a8a;
+  --accent: #4e9af1;
+}
+
+html, body { margin: 0; padding: 0; }
+body { font: 13px/1.4 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif; min-width: 360px; max-width: 480px; }
+
+header { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-bottom: 1px solid #ddd; }
+h1 { font-size: 14px; margin: 0; }
+button { cursor: pointer; padding: 6px 10px; font-size: 12px; }
+
+section { padding: 10px 12px; }
+section#page div { margin: 2px 0; }
+section#media .item { border: 1px solid #ddd; border-radius: 6px; padding: 8px; margin: 8px 0; background: #fafafa; }
+section#media .item .src { word-break: break-all; color: #333; }
+label.small { color: #666; font-size: 11px; }
+footer { display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid #ddd; }
+
+.muted { color: #666; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
