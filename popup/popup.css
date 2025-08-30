@@ -17,6 +17,8 @@ section { padding: 10px 12px; }
 section#page div { margin: 2px 0; }
 section#media .item { border: 1px solid #ddd; border-radius: 6px; padding: 8px; margin: 8px 0; background: #fafafa; }
 section#media .item .src { word-break: break-all; color: #333; }
+section#media .item img.preview { max-width: 100%; display: block; margin: 4px 0; }
+section#media .item label.select { display: flex; align-items: center; gap: 4px; }
 label.small { color: #666; font-size: 11px; }
 footer { display: flex; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid #ddd; }
 

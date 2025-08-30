@@ -8,6 +8,8 @@ Scrape publisher, author, license, and media credits from the current page, then
 - Extracts common metadata (publisher, author, site, canonical URL, dates, license)
 - Finds media on the page (images/videos/audio) with alt, caption, and nearby credit text
 - Suggests a recommended credit for each media item
+- Shows media thumbnails with checkboxes so you can pick specific items
+- Download selected media directly from the popup
 - Save to local storage and manage from the Options page
 - Export single capture or all captures as JSON
 - Background auto-capture on download (best effort)

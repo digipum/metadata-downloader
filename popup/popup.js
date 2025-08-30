@@ -60,7 +60,12 @@ function render(result) {
   media.forEach((m, idx) => {
     const container = e('div', { className: 'item' });
     container.appendChild(e('div', { className: 'small' }, [`#${idx + 1} ${m.type}`]));
-    if (m.src) container.appendChild(e('div', { className: 'src mono' }, [m.src]));
+    if (m.src) {
+      container.appendChild(e('img', { src: m.src, className: 'preview' }));
+      container.appendChild(e('div', { className: 'src mono' }, [m.src]));
+      const cb = e('input', { type: 'checkbox', className: 'media-select', value: m.src });
+      container.appendChild(e('label', { className: 'small select' }, [cb, ' Select']));
+    }
     if (m.alt) container.appendChild(e('div', {}, ['Alt: ', e('span', { className: 'mono' }, [m.alt])]));
     if (m.caption) container.appendChild(e('div', {}, ['Caption: ', e('span', { className: 'mono' }, [m.caption])]));
     if (m.credit) container.appendChild(e('div', {}, ['Credit: ', e('span', { className: 'mono' }, [m.credit])]));
@@ -96,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const saveBtn = document.getElementById('save');
   const copyBtn = document.getElementById('copy');
   const downloadBtn = document.getElementById('download');
+  const downloadMediaBtn = document.getElementById('download-media');
 
   let current = null;
 
@@ -128,6 +134,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!current) return;
     const fnSafe = (current.page?.title || 'metadata').replace(/[^a-z0-9]+/gi, '_').slice(0, 50);
     downloadJSON(current, `${fnSafe || 'metadata'}.json`);
+  });
+  downloadMediaBtn.addEventListener('click', () => {
+    const selected = Array.from(document.querySelectorAll('.media-select:checked'));
+    selected.forEach((cb) => {
+      const url = cb.value;
+      if (url) {
+        chrome.downloads.download({ url });
+      }
+    });
   });
 
   doScrape();
