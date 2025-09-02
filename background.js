@@ -78,10 +78,16 @@ function buildXmpFromPage(page) {
   return xmp;
 }
 
-async function sendNativeTag(filePath, page) {
+async function sendNativeTag(filePath, capture) {
   try {
-    const xmp = buildXmpFromPage(page);
-    const payload = { type: 'tag', file: filePath, xmp, page };
+    const xmp = buildXmpFromPage(capture?.page);
+    // Embed full capture JSON into a custom XMP field for downstream use
+    try {
+      xmp['XMP-mediacap:CaptureJSON'] = JSON.stringify(capture);
+    } catch (_) {
+      // Ignore serialization issues but continue tagging with basic fields
+    }
+    const payload = { type: 'tag', file: filePath, xmp, page: capture?.page };
     const resp = await chrome.runtime.sendNativeMessage('com.mediacapture.exiftool', payload);
     return resp;
   } catch (e) {
@@ -149,7 +155,7 @@ chrome.downloads.onChanged.addListener(async (delta) => {
       const [info] = await chrome.downloads.search({ id });
       const file = info && info.filename ? info.filename : null;
       if (file) {
-        await sendNativeTag(file, capture.page);
+        await sendNativeTag(file, capture);
       }
       pendingByDownloadId.delete(id);
     }
